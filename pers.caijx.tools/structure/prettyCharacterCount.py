@@ -1,3 +1,4 @@
+# 计算一个字符串中每个字符出现的次数
 import pprint
 message = 'It was a bright cold day in April, and the clocks were striking thirteen.'
 count = {}
