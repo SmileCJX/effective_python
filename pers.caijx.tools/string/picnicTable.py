@@ -1,4 +1,4 @@
-#打印表格式数据
+# 打印表格式数据
 def printPicnic(itemsDict,leftWidth,rightWidth):
     print('PICNIC ITEMS'.center(leftWidth + rightWidth,'-'))
     for k,v in itemsDict.items():
