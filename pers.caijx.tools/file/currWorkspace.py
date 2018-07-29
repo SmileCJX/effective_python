@@ -11,3 +11,6 @@ print(os.path.abspath('.'))
 print(os.path.abspath('.\\scripts'))
 print(os.path.isabs('.'))
 print(os.path.isabs(os.path.abspath('.')))
+
+print(os.path.relpath('c:\\windows','c:\\'))
+print(os.path.relpath('c:\\windows','c:\\spam\\eggs'))
