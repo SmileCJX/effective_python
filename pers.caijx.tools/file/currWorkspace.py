@@ -14,3 +14,9 @@ print(os.path.isabs(os.path.abspath('.')))
 
 print(os.path.relpath('c:\\windows','c:\\'))
 print(os.path.relpath('c:\\windows','c:\\spam\\eggs'))
+
+path = 'c:\\windows\\system32\\calc.exe'
+print(os.path.basename(path))
+print(os.path.dirname(path))
+
+print(path.split(os.path.sep))
