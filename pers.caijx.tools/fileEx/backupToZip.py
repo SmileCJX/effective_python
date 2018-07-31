@@ -18,6 +18,16 @@ def backupToZip(folder):
     print('Create %s...' % (zipFilename))
     backupZip = zipfile.ZipFile(zipFilename,'w')
     # Walk the entire folder tree and compress the files in each folder.
+    for foldername,subfolders,filenames in os.walk(folder):
+        print('Adding files in %s...' % foldername)
+        # Add the current folder to the ZIP file.
+        backupZip.write(foldername)
+        for filename in filenames:
+            newBase = os.path.basename(folder) + '_'
+            if filename.startswith(newBase) and filename.endswith('.zip'):
+                continue
+            backupZip.write(os.path.join(foldername,filename))
+    backupZip.close()
     print('Done.')
 
-backupToZip('C:\\dev\\IdeaProjects\\effective_python\\pers.caijx.tools\\fileEx\\copy')
+backupToZip('C:\\dev\\IdeaProjects\\effective_python\\pers.caijx.tools\\fileEx\\delicious')
