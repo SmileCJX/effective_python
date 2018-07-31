@@ -23,6 +23,6 @@ for amerFilename in os.listdir('.'):
     # Get the different parts of the filename
     beforePart = mo.group(1)
     monthPart = mo.group(2)
-    dayPart = mo.group(3)
-    yearPart = mo.group(4)
-    afterPart = mo.group(5)
+    dayPart = mo.group(4)
+    yearPart = mo.group(6)
+    afterPart = mo.group(8)
