@@ -18,3 +18,5 @@ elif len(sys.argv) == 2:
     elif sys.argv[1] in mcbShelf:
         pyperclip.copy(mcbShelf[sys.argv[1]])
 mcbShelf.close()
+
+# todo 扩展多重剪贴板，增加一个delte <keyword>命令行参数，它将从shelf中删除一个关键字。然后添加一个delete命令行参数，它将删除所有关键字
