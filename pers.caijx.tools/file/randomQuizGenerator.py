@@ -43,3 +43,7 @@ for quizNum in range(35):
         wrongAnswers = random.sample(wrongAnswers,3)
         answerOptions = wrongAnswers + [correctAnswer]
         random.shuffle(answerOptions)
+
+        # write the question and answer options to the quiz file.
+
+        # write the answer key to a file.
