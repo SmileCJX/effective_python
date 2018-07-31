@@ -15,6 +15,8 @@ def backupToZip(folder):
             break
         number = number + 1
     # Create the zip file.
+    print('Create %s...' % (zipFilename))
+    backupZip = zipfile.ZipFile(zipFilename,'w')
     # Walk the entire folder tree and compress the files in each folder.
     print('Done.')
 
