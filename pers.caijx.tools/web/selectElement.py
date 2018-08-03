@@ -19,3 +19,9 @@ print(str(pElems[1]))
 print(pElems[0].getText())
 print(str(pElems[2]))
 print(pElems[2].getText())
+
+spamElem = exampleSoup.select('span')[0]
+print(str(spamElem))
+print(spamElem.get('id'))
+print(spamElem.get('some_exists') == None)
+print(spamElem.attrs)
