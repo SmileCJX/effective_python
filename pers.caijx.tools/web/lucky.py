@@ -6,5 +6,7 @@ res = requests.get('http://www.baidu.com/s?wd=' + ' '.join(sys.argv[1:]))
 res.raise_for_status()
 
 # Retrive top search result links.
+soup = bs4.BeautifulSoup(res.text)
 
 # Open a browser tab for each result.
+linkElems = soup.select('.result.c-container>.t>a')
