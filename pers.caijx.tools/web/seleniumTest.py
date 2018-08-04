@@ -33,3 +33,8 @@ linkElem.click()
 htmlElem = browser.find_element_by_tag_name('html')
 htmlElem.send_keys(Keys.END) # scrolls to bottom
 htmlElem.send_keys(Keys.HOME) # scrolls to top
+
+# 刷新
+browser.refresh()
+# 退出
+browser.quit()
