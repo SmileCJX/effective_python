@@ -12,3 +12,8 @@ try:
     print('Found <%s> element with that class name!' % (elem.tag_name))
 except:
     print('Was not able to find an element with that name.')
+
+# 点击页面
+linkElem = browser.find_element_by_link_text('NBA视频')
+print(str(type(linkElem)))
+linkElem.click()
