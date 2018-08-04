@@ -17,3 +17,13 @@ except:
 linkElem = browser.find_element_by_link_text('NBA视频')
 print(str(type(linkElem)))
 linkElem.click()
+
+# 填写并提交表单
+browser.get('https://sso.toutiao.com')
+phone = browser.find_element_by_id('mobile')
+phone.send_keys('17210851234')
+captcha1 = browser.find_element_by_id('captcha1')
+captcha1.send_keys('1234')
+code = browser.find_element_by_id('code')
+code.send_keys('4567')
+code.submit()
