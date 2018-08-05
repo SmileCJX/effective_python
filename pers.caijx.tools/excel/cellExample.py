@@ -15,3 +15,7 @@ print(sheet.cell(row=1,column=2))
 print(sheet.cell(row=1,column=2).value)
 for i in range(1,8,2):
     print(i,sheet.cell(row=i,column=2).value)
+
+# 确认表的大小
+print(str(sheet.max_row))
+print(str(sheet.max_column))
