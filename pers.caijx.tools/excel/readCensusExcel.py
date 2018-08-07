@@ -2,7 +2,7 @@
 # readCensusExcel.py - 从人口普查电子表格文件中读取数据，并在几秒钟内计算出每个县的统计值
 import openpyxl,pprint
 print('Opening workbook...')
-wb = openpyxl.load_workbook('.\\censuspodata.xlsx')
+wb = openpyxl.load_workbook('.\\censuspopdata.xlsx')
 sheet = wb['Population by Census Tract']
 countryData = {}
 
