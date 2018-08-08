@@ -22,5 +22,6 @@ for row in range(2,sheet.max_row + 1):
     # increase the country pop by the pop in this census tract.
     countryData[state][country]['pop'] += int(pop)
 
+
 # Open a new text file and write the contents of countryData to it.
 
