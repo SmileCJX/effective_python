@@ -4,7 +4,11 @@ import openpyxl
 from openpyxl.styles import Font
 wb = openpyxl.Workbook()
 sheet = wb['Sheet']
-italic24Font = Font(size=24,italic=True)
+italic24Font = Font(name='Times New Roman',bold=True)
 sheet['A1'].font = italic24Font
-sheet['A1'] = 'Hello World!'
+sheet['A1'] = 'Bold Times Roman'
+
+italic24Font2 = Font(size=24,italic=True)
+sheet['B3'].font = italic24Font2
+sheet['B3'] = '24 pt Itaic'
 wb.save('.\\styled.xlsx')
