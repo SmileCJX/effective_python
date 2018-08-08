@@ -22,6 +22,10 @@ for row in range(2,sheet.max_row + 1):
     # increase the country pop by the pop in this census tract.
     countryData[state][country]['pop'] += int(pop)
 
-
 # Open a new text file and write the contents of countryData to it.
+print('Writing results...')
+resultFile = open('.\\census2010.py','w')
+resultFile.write('allData = ' + pprint.pformat(countryData))
+resultFile.close()
+print('Done.')
 
