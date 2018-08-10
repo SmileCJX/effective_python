@@ -1,5 +1,5 @@
 #! python3
-# chartExample.py - 图表
+# chartExample.py - 图 表
 import openpyxl
 wb = openpyxl.Workbook()
 sheet = wb.active
