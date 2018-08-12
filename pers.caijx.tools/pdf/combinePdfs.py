@@ -14,5 +14,8 @@ for filename in pdfFiles:
     pdfFileObj = open(filename,'rb')
     pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
     # Loop through all the pages (except the first) and add them.
+    for pagenum in range(1,pdfReader.getNumPages()):
+        pageObj = pdfReader.getPage(pagenum)
+        pdfWriter.addPage(pageObj)
 
 # Save the resulting PDF to a file
