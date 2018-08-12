@@ -3,7 +3,7 @@
 import PyPDF2,os
 # Get all the PDF filenames.
 pdfFiles = []
-for filename in os.listdir('.'):
+for filename in os.listdir('.\\combine'):
     if filename.endswith('.pdf'):
         pdfFiles.append(filename)
 pdfFiles.sort(key=str.lower)
@@ -19,3 +19,6 @@ for filename in pdfFiles:
         pdfWriter.addPage(pageObj)
 
 # Save the resulting PDF to a file
+pdfOutput = open('.\\allminutes.pdf','wb')
+pdfWriter.write(pdfOutput)
+pdfOutput.close()
