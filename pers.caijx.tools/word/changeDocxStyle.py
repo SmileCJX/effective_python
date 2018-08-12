@@ -1,5 +1,6 @@
 #! python3
 # changeDocxStyle.py - Run属性
+# todo hava some fault
 import docx
 doc = docx.Document('.\\demo.docx')
 print(doc.paragraphs[0].text)
