@@ -10,14 +10,14 @@ def downloadXkcd(startComic,endComic):
         res = requests.get('http://xkcd.com/%s' % (urlNumber))
         res.raise_for_status()
 
-        soup = bs4.BeautifulSoup(res.text)
+        soup = bs4.BeautifulSoup(res.text,features='html.parser')
 
         # Find the URL of the comic image.
         comicElem = soup.select('#comic img')
         if comicElem == []:
             print('Could not find comic image.')
         else:
-            comicUrl = comicElem[0].get('src')
+            comicUrl = 'http:' + comicElem[0].get('src')
             # Download the image.
             print('Downloading image %s...' % (comicUrl))
             res = requests.get(comicUrl)
@@ -31,8 +31,11 @@ def downloadXkcd(startComic,endComic):
 
 # Create and start the Thread objects.
 downloadThreads = []
-for i in range(0,1400,100): # a list of all the Thread objects
+for i in range(900,1400,100): # a list of all the Thread objects
     downloadThread = threading.Thread(target=downloadXkcd,args=(i,i + 99))
     downloadThreads.append(downloadThread)
     downloadThread.start()
 # Wait for all threads to end.
+for downloadThread in downloadThreads:
+    downloadThread.join()
+print('Done.')
