@@ -30,5 +30,9 @@ def downloadXkcd(startComic,endComic):
             imageFile.close()
 
 # Create and start the Thread objects.
-
+downloadThreads = []
+for i in range(0,1400,100): # a list of all the Thread objects
+    downloadThread = threading.Thread(target=downloadXkcd,args=(i,i + 99))
+    downloadThreads.append(downloadThread)
+    downloadThread.start()
 # Wait for all threads to end.
