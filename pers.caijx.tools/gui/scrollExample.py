@@ -7,4 +7,4 @@ for i in range(200):
 
 pyperclip.copy(numbers)
 time.sleep(5)
-pyautogui.scroll(100)
+pyautogui.scroll(1000)
