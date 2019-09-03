@@ -38,6 +38,10 @@ try:
             # 写入表的内容到sheet 1中，第r行第c列
             for c, td in enumerate(table_td_list):
                 sheet.write(r, c, td.text)
+                if 3 == c:
+                    # 页面跳转
+                    linkElem = browser.find_element_by_link_text(td.text)
+                    linkElem.click()
                 # print(td.text)
         # elem = browser.find_element_by_class_name('wrapTable')
         # print('Found <%s> element with that class name!' % (elem.tag_name))
