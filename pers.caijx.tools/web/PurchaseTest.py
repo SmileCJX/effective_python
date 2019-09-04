@@ -54,8 +54,6 @@ try:
                             if 1 == k:
                                 print(ttd.text)
                         # print(detail_table_td_list.)
-                    #     for detail_c, detail_td in enumerate(detail_table_tr_list,1):
-                    #         print(detail_td.text)
                     detailBrowser.quit()
 
                     # 页面跳转
