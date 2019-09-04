@@ -29,7 +29,7 @@ try:
         # print(top.text)
 
     # 循环执行 进行分页的请求
-    for i in range(10):
+    for i in range(1):
         browser.get('http://zfcg.fuzhou.gov.cn/350100/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=' + str(i + 1) +'&notice_type=b716da75fe8d4e4387f5a8c72ac2a937&croporgan_name=%E5%8C%BB%E9%99%A2')
         # 表的内容
         # 将表的每一行存在table_tr_list中
@@ -40,7 +40,24 @@ try:
             # 写入表的内容到sheet 1中，第r行第c列
             for c, td in enumerate(table_td_list):
                 sheet.write(r + i * 10, c, td.text)
-                # if 3 == c:
+                if 3 == c:
+                    linkElem = browser.find_element_by_link_text(td.text)
+                    # print(linkElem.get_attribute('href'))
+                    # 从公告内容获取细节内容
+                    detailBrowser = webdriver.Chrome()
+                    detailBrowser.get(linkElem.get_attribute('href'))
+
+                    detail_table_tr_list = detailBrowser.find_element_by_xpath("//table/tbody").find_elements_by_tag_name('tr')
+                    for detail_r, detail_tr in enumerate(detail_table_tr_list, 0):
+                        detail_table_td_list = detail_tr.find_elements_by_tag_name('td')
+                        for k, ttd in enumerate(detail_table_td_list, 0):
+                            if 1 == k:
+                                print(ttd.text)
+                        # print(detail_table_td_list.)
+                    #     for detail_c, detail_td in enumerate(detail_table_tr_list,1):
+                    #         print(detail_td.text)
+                    detailBrowser.quit()
+
                     # 页面跳转
                     # linkElem = browser.find_element_by_link_text(td.text)
                     # linkElem.click()
