@@ -26,8 +26,19 @@ try:
     table_top_list = browser.find_element_by_xpath("//table/thead/tr").find_elements_by_tag_name('td')
     for c, top in enumerate(table_top_list):
         sheet.write(0, c, top.text)
-        # print(top.text)
-
+    sheet.write(0, 5, '项目名称')
+    sheet.write(0, 6, '项目编号')
+    sheet.write(0, 7, '采购人名称')
+    sheet.write(0, 8, '地址')
+    sheet.write(0, 9, '项目负责人')
+    sheet.write(0, 10, '联系电话')
+    sheet.write(0, 11, '代理机构名称')
+    sheet.write(0, 12, '地址')
+    sheet.write(0, 13, '评审部经办人')
+    sheet.write(0, 14, '联系电话')
+    sheet.write(0, 15, '招标公告日期')
+    sheet.write(0, 16, '招标结果确定日期')
+    sheet.write(0, 17, '资格性及符合性审查情况')
     # 循环执行 进行分页的请求
     for i in range(1):
         browser.get('http://zfcg.fuzhou.gov.cn/350100/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=' + str(i + 1) +'&notice_type=b716da75fe8d4e4387f5a8c72ac2a937&croporgan_name=%E5%8C%BB%E9%99%A2')
@@ -37,9 +48,10 @@ try:
         for r, tr in enumerate(table_tr_list, 0):
             # 将表的每一行的每一列内容存在table_td_list中
             table_td_list = tr.find_elements_by_tag_name('td')
+            length = len(table_td_list)
             # 写入表的内容到sheet 1中，第r行第c列
             for c, td in enumerate(table_td_list):
-                sheet.write(r + i * 10, c, td.text)
+                sheet.write(r + i * 10 + 1, c, td.text)
                 if 3 == c:
                     linkElem = browser.find_element_by_link_text(td.text)
                     # print(linkElem.get_attribute('href'))
@@ -49,19 +61,21 @@ try:
 
                     detail_table_tr_list = detailBrowser.find_element_by_xpath("//table/tbody").find_elements_by_tag_name('tr')
                     for detail_r, detail_tr in enumerate(detail_table_tr_list, 0):
+                        print(detail_r)
                         detail_table_td_list = detail_tr.find_elements_by_tag_name('td')
                         for k, ttd in enumerate(detail_table_td_list, 0):
-                            if 1 == k:
-                                print(ttd.text)
+                            if (1 == k) and (detail_r < 13):
+                                print('位置：' + str(r + i * 10 + 1) + ':' + str(detail_r + length) + '内容:' + ttd.text)
+                                sheet.write(r + i * 10 + 1, (length + detail_r), ttd.text)
+                                # print(ttd.text)
                         # print(detail_table_td_list.)
+                    # 关闭新开浏览器
                     detailBrowser.quit()
 
                     # 页面跳转
                     # linkElem = browser.find_element_by_link_text(td.text)
                     # linkElem.click()
-                # print(td.text)
-        # elem = browser.find_element_by_class_name('wrapTable')
-        # print('Found <%s> element with that class name!' % (elem.tag_name))
+    # 保存文件
     wbk.save('采购信息.xls')
 except:
     print('Was not able to find an element with that name.')
