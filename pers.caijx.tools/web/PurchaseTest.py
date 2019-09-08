@@ -46,6 +46,7 @@ try:
     sheet.write(0, 22, '单价')
     sheet.write(0, 23, '总价')
     sheet.write(0, 24, '中标供应商')
+    lineNumber = 0
     # 循环执行 进行分页的请求
     for i in range(1):
         browser.get('http://zfcg.fuzhou.gov.cn/350100/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=' + str(i + 1) +'&notice_type=b716da75fe8d4e4387f5a8c72ac2a937&croporgan_name=%E5%8C%BB%E9%99%A2')
@@ -56,9 +57,12 @@ try:
             # 将表的每一行的每一列内容存在table_td_list中
             table_td_list = tr.find_elements_by_tag_name('td')
             length = len(table_td_list)
+            lineNumber = lineNumber + 1
+            print(lineNumber)
             # 写入表的内容到sheet 1中，第r行第c列
             for c, td in enumerate(table_td_list):
-                sheet.write(r + i * 10 + 1, c, td.text)
+                # sheet.write(r + i * 10 + 1, c, td.text)
+                sheet.write(lineNumber, c, td.text)
                 if 3 == c:
                     linkElem = browser.find_element_by_link_text(td.text)
                     # print(linkElem.get_attribute('href'))
@@ -73,15 +77,15 @@ try:
                         for k, ttd in enumerate(detail_table_td_list, 0):
                             if (1 == k) and (detail_r < 13):
                                 # print('位置：' + str(r + i * 10 + 1) + ':' + str(detail_r + length) + '内容：' + ttd.text)
-                                sheet.write(r + i * 10 + 1, (length + detail_r), ttd.text)
+                                sheet.write(lineNumber, (length + detail_r), ttd.text)
                             elif (detail_r == 16) and (len(detail_table_td_list) == 2):
                                 # print("内容2：" + ttd.text)
                                 continue
                             elif detail_r == 16 and k > 3:
-                                print("内容3：" + str(14 + k) + '    ' +  ttd.text)
-                                sheet.write(r + i * 10 + 1, 14 + k, ttd.text)
+                                print("内容3：" + str(14 + k) + '    ' + ttd.text)
+                                sheet.write(lineNumber, 14 + k, ttd.text)
                             elif detail_r == 18 and k == 1:
-                                sheet.write(r + i * 10 + 1, 24, ttd.text)
+                                sheet.write(lineNumber, 24, ttd.text)
                             # elif detail_r == 16 and 4 == k:
                             #     sheet.write(r + i * 10 + 1, 19, ttd.text)
                             # elif detail_r == 17 and 5 == k:
