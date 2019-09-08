@@ -39,6 +39,13 @@ try:
     sheet.write(0, 15, '招标公告日期')
     sheet.write(0, 16, '招标结果确定日期')
     sheet.write(0, 17, '资格性及符合性审查情况')
+    sheet.write(0, 18, '商品名称')
+    sheet.write(0, 19, '品牌')
+    sheet.write(0, 20, '规格型号')
+    sheet.write(0, 21, '数量')
+    sheet.write(0, 22, '单价')
+    sheet.write(0, 23, '总价')
+    sheet.write(0, 24, '中标供应商')
     # 循环执行 进行分页的请求
     for i in range(1):
         browser.get('http://zfcg.fuzhou.gov.cn/350100/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=' + str(i + 1) +'&notice_type=b716da75fe8d4e4387f5a8c72ac2a937&croporgan_name=%E5%8C%BB%E9%99%A2')
@@ -61,12 +68,26 @@ try:
 
                     detail_table_tr_list = detailBrowser.find_element_by_xpath("//table/tbody").find_elements_by_tag_name('tr')
                     for detail_r, detail_tr in enumerate(detail_table_tr_list, 0):
-                        print(detail_r)
+                        # print(detail_r)
                         detail_table_td_list = detail_tr.find_elements_by_tag_name('td')
                         for k, ttd in enumerate(detail_table_td_list, 0):
                             if (1 == k) and (detail_r < 13):
-                                print('位置：' + str(r + i * 10 + 1) + ':' + str(detail_r + length) + '内容:' + ttd.text)
+                                # print('位置：' + str(r + i * 10 + 1) + ':' + str(detail_r + length) + '内容：' + ttd.text)
                                 sheet.write(r + i * 10 + 1, (length + detail_r), ttd.text)
+                            elif (detail_r == 16) and (len(detail_table_td_list) == 2):
+                                # print("内容2：" + ttd.text)
+                                continue
+                            elif detail_r == 16 and k > 3:
+                                print("内容3：" + str(14 + k) + '    ' +  ttd.text)
+                                sheet.write(r + i * 10 + 1, 14 + k, ttd.text)
+                            elif detail_r == 18 and k == 1:
+                                sheet.write(r + i * 10 + 1, 24, ttd.text)
+                            # elif detail_r == 16 and 4 == k:
+                            #     sheet.write(r + i * 10 + 1, 19, ttd.text)
+                            # elif detail_r == 17 and 5 == k:
+                                print('-------------------------------')
+                            # elif detail_r == 18:
+                            #     print("内容4：" + ttd.text)
                                 # print(ttd.text)
                         # print(detail_table_td_list.)
                     # 关闭新开浏览器
