@@ -48,8 +48,9 @@ try:
     sheet.write(0, 24, '中标供应商')
     lineNumber = 0
     flag = 0
+    dateLine = 0
     # 循环执行 进行分页的请求
-    for i in range(1):
+    for i in range(20):
         browser.get('http://zfcg.fuzhou.gov.cn/350100/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=' + str(i + 1) +'&notice_type=b716da75fe8d4e4387f5a8c72ac2a937&croporgan_name=%E5%8C%BB%E9%99%A2')
         # 表的内容
         # 将表的每一行存在table_tr_list中
@@ -63,7 +64,15 @@ try:
             # 写入表的内容到sheet 1中，第r行第c列
             for c, td in enumerate(table_td_list):
                 # sheet.write(r + i * 10 + 1, c, td.text)
-                sheet.write(lineNumber, c, td.text)
+                # print(td.text)
+                if c != 4:
+                    sheet.write(lineNumber, c, td.text)
+                else:
+                    if dateLine != 0:
+                        sheet.write(dateLine, c, td.text)
+                    else:
+                        sheet.write(lineNumber, c, td.text)
+                    dateLine = 0
                 if 3 == c:
                     linkElem = browser.find_element_by_link_text(td.text)
                     # print(linkElem.get_attribute('href'))
@@ -88,18 +97,16 @@ try:
                                 # print("内容2：" + ttd.text)
                                 continue
                             elif detail_r >= 16 and k > 3:
-                                print("内容3：" + str(14 + k) + '    ' + ttd.text)
+                                # print("内容3：" + str(14 + k) + '    ' + ttd.text)
                                 # if detail_r != 16:
                                 #     lineNumber = lineNumber + 1
                                 # lineNumber = lineNumber + (detail_r - 16)
                                 sheet.write(lineNumber, 14 + k, ttd.text)
                             elif (detail_r == (flag + 2)) and (k == 1):
-                                print(ttd.text)
-                            #     print("中标供应商：" + detail_r)
                                 sheet.write(lineNumber - (detail_r - 18), 24, ttd.text)
-                            #     print('-------------------------------')
-                            #     continue
-                        print("flag" + str(flag))
+                                dateLine = lineNumber - (detail_r - 18)
+                                continue
+                        # print("flag" + str(flag))
                     # 关闭新开浏览器
                     detailBrowser.quit()
 
