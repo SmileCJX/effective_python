@@ -75,10 +75,10 @@ try:
                     for detail_r, detail_tr in enumerate(detail_table_tr_list, 0):
                         # print(detail_r)
                         detail_table_td_list = detail_tr.find_elements_by_tag_name('td')
-                        flag = 0
+                        flag = 16
                         if (detail_r > 16) and (len(detail_table_td_list) > 3):
                             lineNumber = lineNumber + 1 # 有多个品目名称，则换行
-                            flag = lineNumber
+                            flag = detail_r
                         for k, ttd in enumerate(detail_table_td_list, 0):
                             if (1 == k) and (detail_r < 13):
                                 # print('位置：' + str(r + i * 10 + 1) + ':' + str(detail_r + length) + '内容：' + ttd.text)
@@ -92,16 +92,11 @@ try:
                                 #     lineNumber = lineNumber + 1
                                 # lineNumber = lineNumber + (detail_r - 16)
                                 sheet.write(lineNumber, 14 + k, ttd.text)
-                            elif (detail_r > 16) and (detail_r == (flag + 2)) and k == 1:
-                                sheet.write(lineNumber, 24, ttd.text)
-                            # elif detail_r == 16 and 4 == k:
-                            #     sheet.write(r + i * 10 + 1, 19, ttd.text)
-                            # elif detail_r == 17 and 5 == k:
-                                print('-------------------------------')
-                            # elif detail_r == 18:
-                            #     print("内容4：" + ttd.text)
-                                # print(ttd.text)
-                        # print(detail_table_td_list.)
+                            # elif (detail_r > 16) and (detail_r == (flag + 2)) and k == 1:
+                            #     print("中标供应商：" + detail_r)
+                            #     sheet.write(lineNumber, 24, ttd.text)
+                            #     print('-------------------------------')
+                            #     continue
                     # 关闭新开浏览器
                     detailBrowser.quit()
 
@@ -110,5 +105,6 @@ try:
                     # linkElem.click()
     # 保存文件
     wbk.save('采购信息.xls')
+    browser.quit()
 except:
     print('Was not able to find an element with that name.')
