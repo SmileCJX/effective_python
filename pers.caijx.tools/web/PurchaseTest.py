@@ -96,7 +96,7 @@ try:
                             elif (detail_r == (flag + 2)) and (k == 1):
                                 print(ttd.text)
                             #     print("中标供应商：" + detail_r)
-                            #     sheet.write(lineNumber, 24, ttd.text)
+                                sheet.write(lineNumber - (detail_r - 18), 24, ttd.text)
                             #     print('-------------------------------')
                             #     continue
                         print("flag" + str(flag))
