@@ -75,7 +75,8 @@ try:
                     for detail_r, detail_tr in enumerate(detail_table_tr_list, 0):
                         # print(detail_r)
                         detail_table_td_list = detail_tr.find_elements_by_tag_name('td')
-                        flag = 16
+                        if (detail_r == 16) and (len(detail_table_td_list) > 3):
+                            flag = detail_r
                         if (detail_r > 16) and (len(detail_table_td_list) > 3):
                             lineNumber = lineNumber + 1 # 有多个品目名称，则换行
                             flag = detail_r
@@ -92,11 +93,13 @@ try:
                                 #     lineNumber = lineNumber + 1
                                 # lineNumber = lineNumber + (detail_r - 16)
                                 sheet.write(lineNumber, 14 + k, ttd.text)
-                            # elif (detail_r > 16) and (detail_r == (flag + 2)) and k == 1:
+                            elif (detail_r == (flag + 2)) and (k == 1):
+                                print(ttd.text)
                             #     print("中标供应商：" + detail_r)
                             #     sheet.write(lineNumber, 24, ttd.text)
                             #     print('-------------------------------')
                             #     continue
+                        print("flag" + str(flag))
                     # 关闭新开浏览器
                     detailBrowser.quit()
 
