@@ -36,7 +36,9 @@ try:
     # 漳州市采购公告
     # browser.get('http://140.237.73.6/350600/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=1&croporgan_name=%E5%8C%BB%E9%99%A2&notice_type=b716da75fe8d4e4387f5a8c72ac2a937')
     # 南平市采购公告
-    browser.get('http://27.155.99.31:8090/350700/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=1&notice_type=b716da75fe8d4e4387f5a8c72ac2a937&croporgan_name=%E5%8C%BB%E9%99%A2')
+    # browser.get('http://27.155.99.31:8090/350700/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=1&notice_type=b716da75fe8d4e4387f5a8c72ac2a937&croporgan_name=%E5%8C%BB%E9%99%A2')
+    # 龙岩市采购信息
+    browser.get('http://222.78.94.11/350800/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=1&notice_type=b716da75fe8d4e4387f5a8c72ac2a937&croporgan_name=%E5%8C%BB%E9%99%A2')
     table_top_list = browser.find_element_by_xpath("//table/thead/tr").find_elements_by_tag_name('td')
 
     for c, top in enumerate(table_top_list):
@@ -79,7 +81,9 @@ try:
         # 漳州市采购公告
         # browser.get('http://140.237.73.6/350600/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=' + str(i + 1) + '&croporgan_name=%E5%8C%BB%E9%99%A2&notice_type=b716da75fe8d4e4387f5a8c72ac2a937')
         # 南平市采购公告
-        browser.get('http://27.155.99.31:8090/350700/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=' + str(i + 1) + '&notice_type=b716da75fe8d4e4387f5a8c72ac2a937&croporgan_name=%E5%8C%BB%E9%99%A2')
+        # browser.get('http://27.155.99.31:8090/350700/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=' + str(i + 1) + '&notice_type=b716da75fe8d4e4387f5a8c72ac2a937&croporgan_name=%E5%8C%BB%E9%99%A2')
+        # 龙岩市采购信息
+        browser.get('http://222.78.94.11/350800/noticelist/e8d2cd51915e4c338dc1c6ee2f02b127/?page=' + str(i + 1) + '&notice_type=b716da75fe8d4e4387f5a8c72ac2a937&croporgan_name=%E5%8C%BB%E9%99%A2')
         # 表的内容
         # 将表的每一行存在table_tr_list中
         table_tr_list = browser.find_element_by_xpath("//table/tbody").find_elements_by_tag_name('tr')
@@ -142,7 +146,7 @@ try:
                     # linkElem = browser.find_element_by_link_text(td.text)
                     # linkElem.click()
     # 保存文件
-    wbk.save('南平市采购信息.xls')
+    wbk.save('龙岩市采购信息.xls')
     browser.quit()
 except:
     print('Was not able to find an element with that name.')
